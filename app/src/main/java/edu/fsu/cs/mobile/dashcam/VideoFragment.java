@@ -75,7 +75,7 @@ public class VideoFragment extends Fragment{
 
     public interface VideoFragmentListener
     {
-        // void onRecord(ContentValues values);
+        void onRecord(ContentValues values);
     }
 
 }
