@@ -9,7 +9,7 @@ public class MainActivity extends AppCompatActivity implements VideoFragment.Vid
 {
 
 
-    //THIS IS A COMMENT
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
