@@ -21,4 +21,14 @@
         android:layout_below="@+id/button_record"
         android:layout_marginTop="79dp"
         android:text="REVIEW" />
+
+    <Button
+        android:id="@+id/button_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STOP"
+        android:layout_alignBaseline="@+id/button_record"
+        android:layout_alignBottom="@+id/button_record"
+        android:layout_alignLeft="@+id/button_record"
+        android:layout_alignStart="@+id/button_record" />
 </RelativeLayout>
