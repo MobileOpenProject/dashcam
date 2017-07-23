@@ -43,7 +43,7 @@ public class VideoFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mRootView = inflater.inflate(R.layout.video_layout, container, false);
+        //mRootView = inflater.inflate(R.layout.video_layout, container, false);
         // TODO: Setup UI
         //ListView list;
         //list = mRootView.findViewById(R.id.list_url);
