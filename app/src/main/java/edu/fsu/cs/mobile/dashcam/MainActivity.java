@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements VideoFragment.Vid
         Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
         onMain();
     }
 
