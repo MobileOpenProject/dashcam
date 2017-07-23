@@ -5,8 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="edu.fsu.cs.mobile.dashcam.VideoFragment">
 
-    <!-- Add login form widgets -->
-
     <TextView
         android:id="@+id/empID_textView"
         android:layout_width="wrap_content"

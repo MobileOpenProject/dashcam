@@ -36,9 +36,10 @@ public class MainFragment extends Fragment
         Record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onRecord();
+                Record.setText("STOP");
             }
         });
+
 
         Review.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +70,6 @@ public class MainFragment extends Fragment
     }
 
     public interface MainFragmentListener {
-        void onRecord();
         void onReview();
     }
 }
