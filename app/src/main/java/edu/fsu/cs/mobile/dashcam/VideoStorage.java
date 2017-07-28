@@ -24,9 +24,7 @@ public class VideoStorage extends ContentProvider {
     public final static String LONGITUDE = "long";
     public static final Uri CONTENT_URI = Uri.parse("content://edu.fsu.cs.mobile.dashcam.provider");
 
-
     public DBHelper db_helper;
-
 
     /* create a table which will store the data */
     private static final String SQL_CREATE_MAIN = "CREATE TABLE VideoTable ( " +
@@ -34,8 +32,6 @@ public class VideoStorage extends ContentProvider {
             "lat REAL, " +
             "long REAL, " +
             "video_uri TEXT )";
-
-
 
     /* when ViedoStoage class is called, create a new DBHelper object */
     @Override
@@ -56,7 +52,6 @@ public class VideoStorage extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
-        //need to check for invalid values?
         return db_helper.getWritableDatabase().update(TABLE_NAMESTABLE, values, selection, selectionArgs);
     }
 
