@@ -1,6 +1,5 @@
 package edu.fsu.cs.mobile.dashcam;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +19,7 @@ public class MainFragment extends Fragment
     public Button Record;
     Button Review;
     Button Stop;
+
     public MainFragment() {
         // Required empty public constructor
     }
@@ -40,7 +40,7 @@ public class MainFragment extends Fragment
             public void onClick(View view) {
                 Record.setVisibility(View.INVISIBLE);
                 Stop.setVisibility((View.VISIBLE));
-
+                mListener.startRecord();
             }
         });
         Stop.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +48,7 @@ public class MainFragment extends Fragment
             public void onClick(View view) {
                 Stop.setVisibility(View.INVISIBLE);
                 Record.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -61,6 +62,7 @@ public class MainFragment extends Fragment
         return rootView;
 
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -81,5 +83,8 @@ public class MainFragment extends Fragment
 
     public interface MainFragmentListener {
         void onReview();
+
+        void startRecord();
+        void stopRecord();
     }
 }

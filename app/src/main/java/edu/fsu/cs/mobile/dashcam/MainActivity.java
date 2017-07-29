@@ -1,7 +1,6 @@
 package edu.fsu.cs.mobile.dashcam;
 
 import android.content.ContentValues;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,9 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements VideoFragment.VideoFragmentListener,MainFragment.MainFragmentListener
-{
-
+public class MainActivity extends AppCompatActivity implements VideoFragment.VideoFragmentListener,MainFragment.MainFragmentListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements VideoFragment.Vid
         onMain();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -39,8 +35,7 @@ public class MainActivity extends AppCompatActivity implements VideoFragment.Vid
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.menu_auto:
-                Toast.makeText(this, "Auto Clicked", Toast.LENGTH_LONG).show();
-
+                //Toast.makeText(this, "Auto Clicked", Toast.LENGTH_LONG).show();
                 //TODO: put actions for click
 
                 break;
@@ -56,22 +51,19 @@ public class MainActivity extends AppCompatActivity implements VideoFragment.Vid
 
 
     @Override
-    public void onRecord(ContentValues values)
-    {
+    public void onRecord(ContentValues values) {
 
 
 
     }
 
     @Override
-    public void onReview()
-    {
+    public void onReview() {
 
 
     }
 
-    public void onMain()
-    {
+    public void onMain() {
         //MainFragment fragment;
         MainFragment fragment = new MainFragment();
         String tag = MainFragment.class.getCanonicalName();
@@ -80,5 +72,21 @@ public class MainActivity extends AppCompatActivity implements VideoFragment.Vid
 
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+
+    public void startRecord() {
+        VideoRecord fragment = new VideoRecord();
+        String tag = MainFragment.class.getCanonicalName();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
+    }
+
+
+    public void stopRecord() {
+
+    }
 }
 
