@@ -57,6 +57,7 @@ public class VideoRecord extends Fragment {
         preview.addView(mPreview);
 
         recordButton = (Button) rootView.findViewById(R.id.stop_record_button);
+        //recordButton.setVisibility(View.VISIBLE);
         recordButton.setText("Start Recording");
 
         recordButton.setOnClickListener(new View.OnClickListener() {

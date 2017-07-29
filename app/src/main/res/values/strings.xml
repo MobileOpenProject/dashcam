@@ -2,4 +2,6 @@
     <string name="app_name">DashCam</string>
     <string name="str_auto">Auto</string>
     <string name="str_manual">Manual</string>
+    <string name="drawer_open">opened</string>
+    <string name="drawer_close">closed</string>
 </resources>
