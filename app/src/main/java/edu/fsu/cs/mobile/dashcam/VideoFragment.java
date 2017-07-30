@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -43,12 +44,11 @@ public class VideoFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //mRootView = inflater.inflate(R.layout.video_layout, container, false);
+        mRootView = inflater.inflate(R.layout.video_layout, container, false);
         // TODO: Setup UI
-        //ListView list;
-        //list = mRootView.findViewById(R.id.list_url);
-        TextView text;
-
+        //ImageView background = mRootView.findViewById(R.id.imageView);
+        //background.setScaleType(ImageView.ScaleType.FIT_XY);
+        mRootView.setBackgroundResource(0);
 
 
 

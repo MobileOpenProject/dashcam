@@ -34,7 +34,7 @@ public class VideoRecord extends Fragment {
     private MediaRecorder mMediaRecorder;
     private CameraPreview mPreview;
     private VideoRecordListener mListener;
-
+    public static String URI="";
     private boolean isRecording = false;
 
     public static final int MEDIA_TYPE_IMAGE = 1;
@@ -80,6 +80,7 @@ public class VideoRecord extends Fragment {
         });
 
 
+
         return rootView;
     }
 
@@ -106,7 +107,13 @@ public class VideoRecord extends Fragment {
         return c;
     }
 
+    public String returnURI()
+    {
+        return URI;
+    }
+
     private static Uri getOutputMediaFileUri(int type) {
+        URI = (Uri.fromFile(getOutputMediaFile(type))).toString();
         return Uri.fromFile(getOutputMediaFile(type));
     }
 

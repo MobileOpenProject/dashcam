@@ -1,5 +1,6 @@
 package edu.fsu.cs.mobile.dashcam;
 
+import android.support.v7.app.ActionBar;
 import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     List<String> DrawerArrayList;
     ArrayAdapter<String> drawer_adapter ;
     ActionBarDrawerToggle mDrawerToggle;
+    String URI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +194,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onReview() {
+        VideoPlayer fragment = new VideoPlayer();
+        fragment.uri=URI;
+        String tag = VideoPlayer.class.getCanonicalName();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
 
 
     }
@@ -213,8 +219,9 @@ public class MainActivity extends AppCompatActivity
 
     public void startRecord() {
         VideoRecord fragment = new VideoRecord();
-        String tag = MainFragment.class.getCanonicalName();
+        String tag = VideoRecord.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
+        URI = fragment.returnURI();
     }
 
 
