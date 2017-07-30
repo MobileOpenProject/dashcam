@@ -264,9 +264,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onReview() {
-        VideoPlayer fragment = new VideoPlayer();
+        //        VideoPlayer fragment = new VideoPlayer();
+//        //fragment.uri=URI;
+//        String tag = VideoPlayer.class.getCanonicalName();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
+
+        VideoPlayerAndMapFragment fragment = new VideoPlayerAndMapFragment();
         //fragment.uri=URI;
-        String tag = VideoPlayer.class.getCanonicalName();
+        String tag = VideoPlayerAndMapFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
 
 

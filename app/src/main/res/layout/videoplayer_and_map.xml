@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <fragment
+        android:id="@+id/video_player_frame"
+        android:name="edu.fsu.cs.mobile.dashcam.VideoPlayer"
+        android:layout_width="380dp"
+        android:layout_height="match_parent"
+        tools:layout="@layout/video_player"></fragment>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map_frame"
+        android:name="edu.fsu.cs.mobile.dashcam.MapFragment"
+        tools:layout="@layout/map_fragment">
+    </fragment>
+
+</LinearLayout>
