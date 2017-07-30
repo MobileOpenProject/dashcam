@@ -55,12 +55,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         requestPermission();
 
-//        //ADD TOOLBAR
-//        Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
-//        setSupportActionBar(toolbar);
-//        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
-
         // Drawer Variables
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -301,6 +295,7 @@ public class MainActivity extends AppCompatActivity
         URI = fragment.returnURI();
     }
 
+    //WHEN USER CLICKS ON THE BACK BUTTON, MAIN SCREEN POPS UP.
     @Override
     public void onBackPressed()
     {
