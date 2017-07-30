@@ -1,7 +1,11 @@
 package edu.fsu.cs.mobile.dashcam;
 
+import android.Manifest;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
@@ -36,11 +40,20 @@ public class MainActivity extends AppCompatActivity
     ActionBarDrawerToggle mDrawerToggle;
     String URI;
 
+    final private int REQUEST_CAMERA_PERMISSION = 1;
+    final private int REQUEST_WRITE_EXTERNAL_PERMISSION = 2;
+    final private int REQUEST_AUDIO_PERMISSION = 3;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        requestPermission();
 
 //        //ADD TOOLBAR
 //        Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
@@ -80,6 +93,63 @@ public class MainActivity extends AppCompatActivity
 
 
         onMain();
+    }
+
+
+
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
+                PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+        }
+       // if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+         //       PackageManager.PERMISSION_GRANTED){
+          //  ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_PERMISSION);
+        //}
+        //if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) !=
+         //       PackageManager.PERMISSION_GRANTED){
+          //  ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_AUDIO_PERMISSION);
+        //}
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CAMERA_PERMISSION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission Granted
+                    Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    // Permission Denied
+                    Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT)
+                            .show();
+                }
+                break;
+            case REQUEST_WRITE_EXTERNAL_PERMISSION:
+                if (grantResults[1] == PackageManager.PERMISSION_GRANTED){
+                    // Permission Granted
+                    Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    // Permission Denied
+                    Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT)
+                            .show();
+                }
+            case REQUEST_AUDIO_PERMISSION:
+                if (grantResults[2] == PackageManager.PERMISSION_GRANTED){
+                    // Permission Granted
+                    Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    // Permission Denied
+                    Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT)
+                            .show();
+                }
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
