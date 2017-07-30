@@ -1,5 +1,7 @@
 package edu.fsu.cs.mobile.dashcam;
 
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
@@ -225,9 +227,16 @@ public class MainActivity extends AppCompatActivity
         VideoRecord fragment = new VideoRecord();
         String tag = VideoRecord.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
+        getSupportFragmentManager().popBackStack();
         URI = fragment.returnURI();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        onMain();
+        return;
+    }
 
     public void stopRecord() {
 
