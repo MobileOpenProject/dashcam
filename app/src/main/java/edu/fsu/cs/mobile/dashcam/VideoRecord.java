@@ -119,23 +119,23 @@ public class VideoRecord extends Fragment {
 
     private static File getOutputMediaFile(int type) {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DCIM), "MyCameraApp");
+                Environment.DIRECTORY_DCIM), "MapCam");
 
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d("MyCameraApp", "failed to create directory");
+                Log.d("MapCam", "failed to create directory");
                 return null;
             }
         }
 
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        //String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" +
-                    timeStamp + ".jpg");
+                    "MapCam_Snapshot" + ".jpg");
         } else if (type == MEDIA_TYPE_VIDEO) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                    "VID_" + timeStamp + ".mp4");
+                    "VID_" + "MapCam_Recording" + ".mp4");
         } else {
             return null;
         }
@@ -156,6 +156,8 @@ public class VideoRecord extends Fragment {
 
         mMediaRecorder.setOutputFile(getOutputMediaFile(MEDIA_TYPE_VIDEO).toString());
 
+        mMediaRecorder.setMaxDuration(120000);
+
 
 
         try {
@@ -170,6 +172,24 @@ public class VideoRecord extends Fragment {
             releaseMediaRecorder();
             return false;
         }
+
+        mMediaRecorder.setOnInfoListener(new MediaRecorder.OnInfoListener() {
+            @Override
+            public void onInfo(MediaRecorder mediaRecorder, int i, int i1) {
+                if(i == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
+                    Toast.makeText(getContext(), "2 Minute Recording Reached", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), "stopping", Toast.LENGTH_LONG).show();
+                    mMediaRecorder.stop();
+                    releaseMediaRecorder();
+                    Log.d("dbtag", "notrecording");
+                    isRecording = false;
+
+                    //Toast.makeText(getContext(), "starting", Toast.LENGTH_LONG).show();
+                    prepareVideoRecorder();
+                    isRecording = true;
+                }
+            }
+        });
 
         mMediaRecorder.start();
         return true;
