@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.Toast;
 
 
@@ -36,11 +37,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        //ADD TOOLBAR
-        Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+//        //ADD TOOLBAR
+//        Toolbar toolbar = (Toolbar)findViewById(R.id.my_toolbar);
+//        setSupportActionBar(toolbar);
+//        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
 
         // Drawer Variables
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -195,7 +199,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onReview() {
         VideoPlayer fragment = new VideoPlayer();
-        fragment.uri=URI;
+        //fragment.uri=URI;
         String tag = VideoPlayer.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
 
