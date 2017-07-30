@@ -24,18 +24,12 @@ public class VideoPlayer extends Fragment
 
 {
     String uri;
-    //Activity activity = this.getActivity();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-       /// activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         View rootView = inflater.inflate(R.layout.video_player, container, false);
         VideoView vidView = (VideoView) rootView.findViewById(R.id.myVideo);
-
-        //Uri vidUri = Uri.parse(uri);
-        //String vidAddress = "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4";
         String vidPath = "file:///storage/emulated/0/DCIM/MapCam/VID_MapCam_Recording.mp4";
         File videoFile = new File(URI.create(vidPath).getPath());
 

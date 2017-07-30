@@ -32,25 +32,14 @@ public class MainFragment extends Fragment
         // TODO: setup UI
         Record = (Button) rootView.findViewById(R.id.button_record);
         Review = (Button) rootView.findViewById(R.id.button_review);
-        Stop = (Button) rootView.findViewById(R.id.button_stop);
         Record.setVisibility(View.VISIBLE);
-        Stop.setVisibility(View.INVISIBLE);
         Record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Record.setVisibility(View.INVISIBLE);
-                Stop.setVisibility((View.VISIBLE));
                 mListener.startRecord();
             }
         });
-        Stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Stop.setVisibility(View.INVISIBLE);
-                Record.setVisibility(View.VISIBLE);
 
-            }
-        });
 
         Review.setOnClickListener(new View.OnClickListener() {
             @Override
