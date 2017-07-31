@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.File;
@@ -29,7 +30,7 @@ import java.util.Date;
 
 public class VideoRecord extends Fragment {
 
-    Button recordButton;
+    ImageButton recordButton;
 
     private Camera mCamera;
     private MediaRecorder mMediaRecorder;
@@ -52,14 +53,14 @@ public class VideoRecord extends Fragment {
 
         mCamera = getCameraInstance();
 
-        recordButton = (Button) rootView.findViewById(R.id.stop_record_button);
+        recordButton = rootView.findViewById(R.id.stop_record_button);
         mPreview = new CameraPreview(getActivity(), mCamera);
         FrameLayout preview = (FrameLayout) rootView.findViewById(R.id.camera_preview);
         preview.addView(mPreview);
 
-        recordButton = (Button) rootView.findViewById(R.id.stop_record_button);
+        //recordButton = (Button) rootView.findViewById(R.id.stop_record_button);
         //recordButton.setVisibility(View.VISIBLE);
-        recordButton.setText("Start Recording");
+        //recordButton.setText("Start Recording");
 
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +71,12 @@ public class VideoRecord extends Fragment {
                     releaseMediaRecorder();
                     Log.d("dbtag", "notrecording");
                     isRecording = false;
-                    recordButton.setText("Start Recording");
+                    recordButton.setImageResource(R.drawable.record);
                 } else {
                     Toast.makeText(getContext(), "starting", Toast.LENGTH_LONG).show();
                     prepareVideoRecorder();
                     isRecording = true;
-                    recordButton.setText("Stop Recording");
+                    recordButton.setImageResource(R.drawable.stop);
                 }
             }
         });
