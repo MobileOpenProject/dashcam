@@ -20,6 +20,14 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
+////////CODE 1-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
+import com.google.android.gms.maps.model.LatLng;
+import android.location.LocationManager;
+import android.location.LocationListener;
+import android.location.Location;
+import android.support.v4.app.ActivityCompat;
+///////////////////////////////////////////////////////////////////////////////////////////
+
 /****************************************************************/
 /* -------DashCam App---------                                  */
 /*                                                              */
@@ -33,7 +41,7 @@ import java.io.IOException;
 /*                                                              */
 /****************************************************************/
 
-public class VideoRecord extends Fragment {
+public class VideoRecord extends Fragment implements LocationListener {
 
     ImageButton recordButton;
 
@@ -47,6 +55,25 @@ public class VideoRecord extends Fragment {
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
 
+
+    ////////CODE 2-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {}
+    @Override
+    public void onProviderEnabled(String provider) {}
+    @Override
+    public void onProviderDisabled(String provider) {}
+
+    @Override
+    public void onLocationChanged(Location location) {
+        LatLng newLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+        Toast.makeText(getContext(), "LatLng = " + newLatLng.toString(), Toast.LENGTH_LONG).show();
+
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
     public VideoRecord() {
 
     }
@@ -55,6 +82,20 @@ public class VideoRecord extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.video_record, container, false);
+
+
+        ////////CODE 3-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
+        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+
+        LocationManager lm = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
+
 
         mCamera = getCameraInstance();
 

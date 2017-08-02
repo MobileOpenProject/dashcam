@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+
 /****************************************************************/
 /* -------DashCam App---------                                  */
 /*                                                              */
@@ -22,10 +24,12 @@ import android.view.ViewGroup;
 /****************************************************************/
 
 
-public class VideoFragment extends Fragment{
+public class VideoFragment extends Fragment {
 
     private VideoFragmentListener mListener;
     private View mRootView;
+
+
 
     public VideoFragment()
     {
