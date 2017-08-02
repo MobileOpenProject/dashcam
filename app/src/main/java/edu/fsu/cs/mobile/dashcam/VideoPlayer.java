@@ -38,6 +38,7 @@ public class VideoPlayer extends Fragment
         String vidPath = "file:///storage/emulated/0/DCIM/MapCam/VID_MapCam_Recording.mp4";
         File videoFile = new File(URI.create(vidPath).getPath());
 
+        //if video exists then play it otherwise toast will show
         if (videoFile.exists()) {
 
             vidView.setVideoURI(Uri.parse(vidPath));

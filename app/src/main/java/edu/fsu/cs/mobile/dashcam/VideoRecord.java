@@ -51,9 +51,7 @@ public class VideoRecord extends Fragment implements LocationListener {
     private MediaRecorder mMediaRecorder;
     private CameraPreview mPreview;
     private VideoRecordListener mListener;
-    public static String URI="";
     private boolean isRecording = false;
-    Context context = getContext();
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
     public ArrayList<LatLng> locations = new ArrayList<>();
@@ -170,13 +168,9 @@ public class VideoRecord extends Fragment implements LocationListener {
         return c;
     }
 
-    public String returnURI()
-    {
-        return URI;
-    }
+
 
     private static Uri getOutputMediaFileUri(int type) {
-        URI = (Uri.fromFile(getOutputMediaFile(type))).toString();
         return Uri.fromFile(getOutputMediaFile(type));
     }
 

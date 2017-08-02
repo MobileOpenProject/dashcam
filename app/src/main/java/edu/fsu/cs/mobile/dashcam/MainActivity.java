@@ -291,12 +291,12 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    /*when user hits record button,VideoRecord fragment shows up */
     public void startRecord() {
         VideoRecord fragment = new VideoRecord();
         String tag = VideoRecord.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
         getSupportFragmentManager().popBackStack();
-        URI = fragment.returnURI();
     }
 
     //WHEN USER CLICKS ON THE BACK BUTTON, MAIN SCREEN POPS UP.
