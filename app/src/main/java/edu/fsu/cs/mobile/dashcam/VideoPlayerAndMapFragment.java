@@ -1,5 +1,6 @@
 package edu.fsu.cs.mobile.dashcam;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,9 +27,8 @@ public class VideoPlayerAndMapFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.videoplayer_and_map, container, false);
         VideoPlayer videoPlayer;
         MapFragment mapFragment;
-
+        rootView.setBackgroundColor(Color.BLACK);
         FragmentManager manager = getFragmentManager();
-
         videoPlayer = (VideoPlayer) manager.findFragmentById(R.id.video_player_frame);
         mapFragment = (MapFragment) manager.findFragmentById(R.id.map_frame);
 
