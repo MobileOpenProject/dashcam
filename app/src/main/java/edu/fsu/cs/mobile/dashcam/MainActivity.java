@@ -1,23 +1,17 @@
 package edu.fsu.cs.mobile.dashcam;
 
 import android.Manifest;
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
-
-
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.ListView;
@@ -28,34 +22,53 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+/****************************************************************/
+/* -------DashCam App---------                                  */
+/*                                                              */
+/* Created By:  Alex Quesenberry, Katie Brodhead,               */
+/*              Sree Paruchuri, Garrett Schmitt                 */
+/*                                                              */
+/* File: MainActivity                                           */
+/* Description:                                                 */
+/* This is the only activity in our application. It is the      */
+/* central location where all the other classes are called and  */
+/* used(directly or indirectly), and displays all the fragments */
+/* for displaying the recorded video, recording the video,      */
+/* maps, and a home screen for the user                         */
+/*                                                              */
+/****************************************************************/
+
+
+
+
 public class MainActivity extends AppCompatActivity
         implements VideoFragment.VideoFragmentListener,
                     MainFragment.MainFragmentListener {
 
-    ListView mDrawerList;
-    DrawerLayout mDrawerLayout;
-    String[] DrawerList = new String[] {"Past Videos", "Settings"};
-    List<String> DrawerArrayList;
-    ArrayAdapter<String> drawer_adapter ;
-    ActionBarDrawerToggle mDrawerToggle;
-    String URI;
-
-    final private int REQUEST_CAMERA_PERMISSION = 1;
-    final private int REQUEST_WRITE_EXTERNAL_PERMISSION = 2;
-    final private int REQUEST_AUDIO_PERMISSION = 3;
+    private ListView mDrawerList;
+    private DrawerLayout mDrawerLayout;
+    private List<String> DrawerArrayList;
+    private ArrayAdapter<String> drawer_adapter ;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private String URI;
+    final private int REQUEST_ALL_PERMISSION = 1;
+    final private String[] DrawerList = new String[] {"Past Videos", "Settings"};
 
 
 
 
 
+    /********************************************************************/
+    /* Method to run anything that is neccessary to this activity at the*/
+    /* time of creation                                                 */
+    /********************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         requestPermission1();
-       // requestPermission2();
-        //requestPermission3();
 
         // Drawer Variables
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -93,64 +106,32 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
+    /********************************************************************/
+    /* Method to request Camera, Audio, and external storage permission */
+    /********************************************************************/
     private void requestPermission1() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
                 PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, REQUEST_CAMERA_PERMISSION);
-        }
-    }
-    private void requestPermission2() {
-         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
-               PackageManager.PERMISSION_GRANTED){
-          ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL_PERMISSION);
-        }
-    }
-
-    private void requestPermission3() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) !=
-               PackageManager.PERMISSION_GRANTED){
-          ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_AUDIO_PERMISSION);
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, REQUEST_ALL_PERMISSION);
         }
     }
 
 
-
-
+    /*************************************************************/
+    /* Method to overide onRequestPermissionResult               */
+    /* This Method is used for any actions needed to be taken    */
+    /* based on the users response to the request for permissions*/
+    /*************************************************************/
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
-            case REQUEST_CAMERA_PERMISSION:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission Granted
-                    Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT)
-                            .show();
-                } else {
+            case REQUEST_ALL_PERMISSION:
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     // Permission Denied
-                    Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT)
+                    Toast.makeText(MainActivity.this, "Application Will Not Function Correctly Without Permissions", Toast.LENGTH_SHORT)
                             .show();
                 }
                 break;
-            case REQUEST_WRITE_EXTERNAL_PERMISSION:
-                if (grantResults[1] == PackageManager.PERMISSION_GRANTED){
-                    // Permission Granted
-                    Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    // Permission Denied
-                    Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT)
-                            .show();
-                }
-            case REQUEST_AUDIO_PERMISSION:
-                if (grantResults[2] == PackageManager.PERMISSION_GRANTED){
-                    // Permission Granted
-                    Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    // Permission Denied
-                    Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT)
-                            .show();
-                }
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
@@ -163,6 +144,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /*************************************************************/
+    /* Helpter method for action taken when different            */
+    /* items are selected in the drawer                          */
+    /*************************************************************/
     private void selectItem(int position){
         switch (position){
             case 0:
@@ -268,8 +253,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onRecord(ContentValues values) {
 
-
-
     }
 
     @Override
@@ -287,8 +270,8 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /* Calls main fragment */
     public void onMain() {
-        //MainFragment fragment;
         MainFragment fragment = new MainFragment();
         String tag = MainFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();

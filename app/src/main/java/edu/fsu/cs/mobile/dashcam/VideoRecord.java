@@ -1,7 +1,6 @@
 package edu.fsu.cs.mobile.dashcam;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
@@ -14,19 +13,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-/**
- * Created by Garrett on 28/7/17.
- */
+/****************************************************************/
+/* -------DashCam App---------                                  */
+/*                                                              */
+/* Created By:  Alex Quesenberry, Katie Brodhead,               */
+/*              Sree Paruchuri, Garrett Schmitt                 */
+/*                                                              */
+/* File: CameraPreview                                          */
+/* Description:                                                 */
+/* This file allows the user to view the camera live on their   */
+/* screen by utilizing a surface view                           */
+/*                                                              */
+/****************************************************************/
 
 public class VideoRecord extends Fragment {
 

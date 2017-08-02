@@ -8,11 +8,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
- /****************************************************************************
- * Created by alex on 7/23/2017.                                             *
- * this java file currently stores the URIs for any videos recorded,         *
- * it also stores the location data points for GPS coordinates Lat and Long  *
- ****************************************************************************/
+/****************************************************************/
+/* -------DashCam App---------                                  */
+/*                                                              */
+/* Created By:  Alex Quesenberry, Katie Brodhead,               */
+/*              Sree Paruchuri, Garrett Schmitt                 */
+/*                                                              */
+/* File: VideoStorage                                           */
+/* Description:                                                 */
+/* This file currently stores the URIs for any videos recorded, */
+/* it also stores the location data points for GPS coordinates  */
+/* Lat and Long                                                 */
+/*                                                              */
+/****************************************************************/
+
 public class VideoStorage extends ContentProvider {
 
     /* declare some global variables */

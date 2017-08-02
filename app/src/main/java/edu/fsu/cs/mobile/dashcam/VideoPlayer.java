@@ -1,24 +1,29 @@
 package edu.fsu.cs.mobile.dashcam;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
-
 import java.io.File;
 import java.net.URI;
 
 
-/**
- * Created by Anjali on 7/29/2017.
- */
+/****************************************************************/
+/* -------DashCam App---------                                  */
+/*                                                              */
+/* Created By:  Alex Quesenberry, Katie Brodhead,               */
+/*              Sree Paruchuri, Garrett Schmitt                 */
+/*                                                              */
+/* File: VideoPlayer                                            */
+/* Description:                                                 */
+/* This file is a fragment which displays the recorded video    */
+/* to the user                                                  */
+/*                                                              */
+/****************************************************************/
 
 public class VideoPlayer extends Fragment
 

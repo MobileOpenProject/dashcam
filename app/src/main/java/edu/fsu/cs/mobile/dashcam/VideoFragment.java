@@ -1,32 +1,25 @@
 package edu.fsu.cs.mobile.dashcam;
 
-/**
- * Created by sap15e on 7/23/2017.
- */
-
-
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.CursorAdapter;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
+/****************************************************************/
+/* -------DashCam App---------                                  */
+/*                                                              */
+/* Created By:  Alex Quesenberry, Katie Brodhead,               */
+/*              Sree Paruchuri, Garrett Schmitt                 */
+/*                                                              */
+/* File: VideoFragment                                          */
+/* Description:                                                 */
+/* This file is a fragment which displays the recorded video    */
+/* to the user                                                  */
+/*                                                              */
+/****************************************************************/
 
 
 public class VideoFragment extends Fragment{

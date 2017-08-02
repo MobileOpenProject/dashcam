@@ -8,9 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-/**
- * Created by sap15e on 7/23/2017.
- */
+/****************************************************************/
+/* -------DashCam App---------                                  */
+/*                                                              */
+/* Created By:  Alex Quesenberry, Katie Brodhead,               */
+/*              Sree Paruchuri, Garrett Schmitt                 */
+/*                                                              */
+/* File: MainFragment                                           */
+/* Description:                                                 */
+/* This file is a fragment which displays the home screen to    */
+/* the user                                                     */
+/*                                                              */
+/****************************************************************/
 
 public class MainFragment extends Fragment
 {

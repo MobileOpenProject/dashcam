@@ -5,14 +5,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
-/**
- * Created by Garrett on 30/7/17.
- */
+/****************************************************************/
+/* -------DashCam App---------                                  */
+/*                                                              */
+/* Created By:  Alex Quesenberry, Katie Brodhead,               */
+/*              Sree Paruchuri, Garrett Schmitt                 */
+/*                                                              */
+/* File: MapFragment                                            */
+/* Description:                                                 */
+/* This file is a fragment which displays the map view to       */
+/* the user                                                     */
+/*                                                              */
+/****************************************************************/
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;

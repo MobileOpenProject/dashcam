@@ -7,9 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by Garrett on 30/7/17.
- */
+/****************************************************************/
+/* -------DashCam App---------                                  */
+/*                                                              */
+/* Created By:  Alex Quesenberry, Katie Brodhead,               */
+/*              Sree Paruchuri, Garrett Schmitt                 */
+/*                                                              */
+/* File: CameraPreview                                          */
+/* Description:                                                 */
+/* This file allows the user to view the camera live on their   */
+/* screen by utilizing a surface view                           */
+/*                                                              */
+/****************************************************************/
 
 public class VideoPlayerAndMapFragment extends Fragment {
     @Override
