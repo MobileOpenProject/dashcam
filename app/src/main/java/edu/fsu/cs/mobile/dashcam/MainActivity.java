@@ -24,7 +24,7 @@ import java.util.List;
 
 
 /****************************************************************/
-/* -------DashCam App---------                                  */
+/* -------MapCam App---------                                   */
 /*                                                              */
 /* Created By:  Alex Quesenberry, Katie Brodhead,               */
 /*              Sree Paruchuri, Garrett Schmitt                 */
@@ -54,10 +54,6 @@ public class MainActivity extends AppCompatActivity
     private String URI;
     final private int REQUEST_ALL_PERMISSION = 1;
     final private String[] DrawerList = new String[] {"Past Videos", "Settings"};
-
-
-
-
 
     /********************************************************************/
     /* Method to run anything that is neccessary to this activity at the*/
@@ -160,66 +156,11 @@ public class MainActivity extends AppCompatActivity
                 mDrawerLayout.closeDrawers();
                 break;
             case 1:
-                /*
-                Cursor mCursor = getContentResolver().query(RunProvider.CONTENT_URI, null, null, null, null);
-                SimpleCursorAdapter mAdapter;
-                String[] mListColumns;
-
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.setTitle("Past Runs");
-
-                if(metric == true) {
-                    mListColumns = new String[]{RunProvider.RUN_MINUTES, RunProvider.RUN_SECONDS, RunProvider.RUN_MILISECONDS, RunProvider.RUN_STEPS, RunProvider.RUN_DISTANCE};
-
-                    mAdapter = new SimpleCursorAdapter(this, R.layout.list_km, mCursor, mListColumns, new int[]{R.id.minute, R.id.second, R.id.milisecond, R.id.steps, R.id.distance}, 1);
-                    alert.setAdapter(mAdapter, null);
-
-                    alert.show();
-                }else if(metric == false){
-                    mListColumns = new String[]{RunProvider.RUN_MINUTES, RunProvider.RUN_SECONDS, RunProvider.RUN_MILISECONDS, RunProvider.RUN_STEPS, RunProvider.RUN_DISTANCE};
-
-                    mAdapter = new SimpleCursorAdapter(this, R.layout.list_mi, mCursor, mListColumns, new int[]{R.id.minute, R.id.second, R.id.milisecond, R.id.steps, R.id.distance}, 1);
-                    alert.setAdapter(mAdapter, null);
-
-                    alert.show();
-                }
-                */
+                //To be used for future implementations
                 mDrawerLayout.closeDrawers();
                 break;
             case 2:
-                /*
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Settings");
-                builder.setMessage("Standard or Metric system:");
-
-                builder.setPositiveButton("KM", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (!metric) {
-                            metric = true;
-                            milesToKilometers();
-                            distance = menu.findItem(R.id.distance);
-                            distance.setTitle(DIST_STR + distanceNum + KM);
-                        }
-                        mDrawerLayout.closeDrawers();
-                    }
-                });
-
-                builder.setNegativeButton("Miles", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (metric) {
-                            metric = false;
-                            kilometersToMiles();
-                            distance = menu.findItem(R.id.distance);
-                            distance.setTitle(DIST_STR + distanceNum + Miles);
-                        }
-                        mDrawerLayout.closeDrawers();
-                    }
-                });
-
-                builder.show();
-                */
+                //To be used for future implementations
                 break;
             default:
                 Toast.makeText(this, "This is the Default in Drawer", Toast.LENGTH_SHORT).show();
@@ -263,13 +204,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onReview() {
-        //        VideoPlayer fragment = new VideoPlayer();
-//        //fragment.uri=URI;
-//        String tag = VideoPlayer.class.getCanonicalName();
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
 
         VideoPlayerAndMapFragment fragment = new VideoPlayerAndMapFragment();
-        //fragment.uri=URI;
+
         String tag = VideoPlayerAndMapFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
 
@@ -289,7 +226,6 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
     }
-
 
     /*when user hits record button,VideoRecord fragment shows up */
     public void startRecord() {

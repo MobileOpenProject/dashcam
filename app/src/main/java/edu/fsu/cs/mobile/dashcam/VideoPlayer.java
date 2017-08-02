@@ -18,7 +18,7 @@ import java.net.URI;
 
 
 /****************************************************************/
-/* -------DashCam App---------                                  */
+/* -------MapCam App---------                                   */
 /*                                                              */
 /* Created By:  Alex Quesenberry, Katie Brodhead,               */
 /*              Sree Paruchuri, Garrett Schmitt                 */

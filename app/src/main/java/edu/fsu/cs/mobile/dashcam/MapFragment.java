@@ -19,7 +19,7 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 /****************************************************************/
-/* -------DashCam App---------                                  */
+/* -------MapCam App---------                                   */
 /*                                                              */
 /* Created By:  Alex Quesenberry, Katie Brodhead,               */
 /*              Sree Paruchuri, Garrett Schmitt                 */

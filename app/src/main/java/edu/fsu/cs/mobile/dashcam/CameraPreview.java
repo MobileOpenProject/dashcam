@@ -9,7 +9,7 @@ import java.io.IOException;
 import static edu.fsu.cs.mobile.dashcam.VideoRecord.getCameraInstance;
 
 /****************************************************************/
-/* -------DashCam App---------                                  */
+/* -------MapCam App---------                                   */
 /*                                                              */
 /* Created By:  Alex Quesenberry, Katie Brodhead,               */
 /*              Sree Paruchuri, Garrett Schmitt                 */

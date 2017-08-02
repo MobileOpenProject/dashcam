@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
 /****************************************************************/
-/* -------DashCam App---------                                  */
+/* -------MapCam App---------                                   */
 /*                                                              */
 /* Created By:  Alex Quesenberry, Katie Brodhead,               */
 /*              Sree Paruchuri, Garrett Schmitt                 */

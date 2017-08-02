@@ -31,7 +31,7 @@ import android.support.v4.app.ActivityCompat;
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 /****************************************************************/
-/* -------DashCam App---------                                  */
+/* -------MapCam App---------                                   */
 /*                                                              */
 /* Created By:  Alex Quesenberry, Katie Brodhead,               */
 /*              Sree Paruchuri, Garrett Schmitt                 */
@@ -63,7 +63,7 @@ public class VideoRecord extends Fragment implements LocationListener {
     Location startingLocation;
 
 
-    ////////CODE 2-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
+    ////////CODE TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {}
     @Override
@@ -83,7 +83,6 @@ public class VideoRecord extends Fragment implements LocationListener {
             //Toast.makeText(getContext(), "LatLng = " + newLatLng.toString(), Toast.LENGTH_LONG).show();
         }
 
-
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -98,12 +97,6 @@ public class VideoRecord extends Fragment implements LocationListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.video_record, container, false);
 
-        ////////CODE 3-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
-
-        ///////////////////////////////////////////////////////////////////////////////////////////
-
-
-
         mCamera = getCameraInstance();
 
         recordButton = rootView.findViewById(R.id.stop_record_button);
@@ -111,9 +104,6 @@ public class VideoRecord extends Fragment implements LocationListener {
         FrameLayout preview = (FrameLayout) rootView.findViewById(R.id.camera_preview);
         preview.addView(mPreview);
 
-        //recordButton = (Button) rootView.findViewById(R.id.stop_record_button);
-        //recordButton.setVisibility(View.VISIBLE);
-        //recordButton.setText("Start Recording");
 
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -150,12 +140,6 @@ public class VideoRecord extends Fragment implements LocationListener {
                 }
             }
         });
-
-
-
-
-
-
 
         return rootView;
     }
