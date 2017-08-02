@@ -1,13 +1,18 @@
 package edu.fsu.cs.mobile.dashcam;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.File;
 import java.net.URI;
 
@@ -25,20 +30,50 @@ import java.net.URI;
 /*                                                              */
 /****************************************************************/
 
-public class VideoPlayer extends Fragment
-
-{
+public class VideoPlayer extends Fragment {
     String uri;
+    VideoView vidView;
+
+    LatLng first;
+
+    public void getTime() {
+        if (vidView.isPlaying()) {
+            Log.d("dbtag", Integer.toString(vidView.getCurrentPosition()/1000));
+
+            for (int i = 1; i < VideoRecord.locations.size(); i++) {
+                if (vidView.getCurrentPosition() / 1000 == VideoRecord.locations.get(i).TimeStamp) {
+                    MapFragment.drawLine(first, VideoRecord.locations.get(i).aLocation);
+                    first = VideoRecord.locations.get(i).aLocation;
+                    break;
+                }
+            }
+        }
+
+    }
+
+    final Handler mHandler = new Handler();
+
+    final Runnable mTicker = new Runnable() {
+        @Override
+        public void run() {
+            getTime();
+            mHandler.postDelayed(mTicker, 1000);
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        first = VideoRecord.locations.get(0).aLocation;
+
         View rootView = inflater.inflate(R.layout.video_player, container, false);
-        VideoView vidView = (VideoView) rootView.findViewById(R.id.myVideo);
+        vidView = (VideoView) rootView.findViewById(R.id.myVideo);
         String vidPath = "file:///storage/emulated/0/DCIM/MapCam/VID_MapCam_Recording.mp4";
         File videoFile = new File(URI.create(vidPath).getPath());
 
-        //if video exists then play it otherwise toast will show
+        mTicker.run();
+
         if (videoFile.exists()) {
 
             vidView.setVideoURI(Uri.parse(vidPath));
@@ -49,7 +84,6 @@ public class VideoPlayer extends Fragment
         } else {
             Toast.makeText(getContext(), "Sorry no recording to show", Toast.LENGTH_LONG).show();
         }
-
         return rootView;
     }
 

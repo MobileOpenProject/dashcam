@@ -51,10 +51,16 @@ public class VideoRecord extends Fragment implements LocationListener {
     private MediaRecorder mMediaRecorder;
     private CameraPreview mPreview;
     private VideoRecordListener mListener;
+    public static String URI="";
     private boolean isRecording = false;
+    Context context = getContext();
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
-    public ArrayList<LatLng> locations = new ArrayList<>();
+    public static ArrayList<LocationData> locations = new ArrayList<>();
+
+    public int startTime;
+
+    Location startingLocation;
 
 
     ////////CODE 2-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
@@ -67,10 +73,11 @@ public class VideoRecord extends Fragment implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        if (isRecording)
-        {
+        if (isRecording) {
             LatLng newLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-            locations.add(newLatLng);
+            //locations.add(newLatLng);
+            LocationData temp = new LocationData(((int)System.currentTimeMillis() / 1000) - startTime, newLatLng);
+            locations.add(temp);
             Toast.makeText(getContext(), "LatLng = " + newLatLng.toString(), Toast.LENGTH_LONG).show();
         }
 
@@ -88,7 +95,6 @@ public class VideoRecord extends Fragment implements LocationListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.video_record, container, false);
-
 
         ////////CODE 3-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
 
@@ -116,6 +122,8 @@ public class VideoRecord extends Fragment implements LocationListener {
         LocationManager lm = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
+        startingLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,11 +133,16 @@ public class VideoRecord extends Fragment implements LocationListener {
                     releaseMediaRecorder();
                     Log.d("dbtag", "notrecording");
                     isRecording = false;
+                    arrayContents();
                     recordButton.setImageResource(R.drawable.record);
                 } else {
                     Toast.makeText(getContext(), "starting", Toast.LENGTH_LONG).show();
                     prepareVideoRecorder();
                     isRecording = true;
+                    startTime = (int)System.currentTimeMillis() / 1000;
+                    LatLng newLatLng = new LatLng(startingLocation.getLatitude(), startingLocation.getLongitude());
+                    LocationData temp = new LocationData(0, newLatLng);
+                    locations.add(temp);
                     recordButton.setImageResource(R.drawable.stop);
 
                 }
@@ -168,9 +181,13 @@ public class VideoRecord extends Fragment implements LocationListener {
         return c;
     }
 
-
+    public String returnURI()
+    {
+        return URI;
+    }
 
     private static Uri getOutputMediaFileUri(int type) {
+        URI = (Uri.fromFile(getOutputMediaFile(type))).toString();
         return Uri.fromFile(getOutputMediaFile(type));
     }
 
@@ -240,7 +257,6 @@ public class VideoRecord extends Fragment implements LocationListener {
                     releaseMediaRecorder();
                     Log.d("dbtag", "notrecording");
                     isRecording = false;
-
                     //Toast.makeText(getContext(), "starting", Toast.LENGTH_LONG).show();
                     prepareVideoRecorder();
                     isRecording = true;
@@ -268,7 +284,12 @@ public class VideoRecord extends Fragment implements LocationListener {
         }
     }
 
-
+    public void arrayContents() {
+        for (int i = 0; i < locations.size(); i++) {
+            Log.d("dbtag", "Location" + locations.get(i).TimeStamp);
+            Log.d("dbtag", "Location" + locations.get(i).aLocation);
+        }
+    }
 
 
 }
