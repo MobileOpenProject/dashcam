@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 ////////CODE 1-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
 import com.google.android.gms.maps.model.LatLng;
@@ -51,9 +53,10 @@ public class VideoRecord extends Fragment implements LocationListener {
     private VideoRecordListener mListener;
     public static String URI="";
     private boolean isRecording = false;
-
+    Context context = getContext();
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
+    public ArrayList<LatLng> locations = new ArrayList<>();
 
 
     ////////CODE 2-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
@@ -66,8 +69,13 @@ public class VideoRecord extends Fragment implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        LatLng newLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-        Toast.makeText(getContext(), "LatLng = " + newLatLng.toString(), Toast.LENGTH_LONG).show();
+        if (isRecording)
+        {
+            LatLng newLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+            locations.add(newLatLng);
+            Toast.makeText(getContext(), "LatLng = " + newLatLng.toString(), Toast.LENGTH_LONG).show();
+        }
+
 
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -85,14 +93,7 @@ public class VideoRecord extends Fragment implements LocationListener {
 
 
         ////////CODE 3-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
-        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }
 
-        LocationManager lm = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
         ///////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -107,6 +108,15 @@ public class VideoRecord extends Fragment implements LocationListener {
         //recordButton = (Button) rootView.findViewById(R.id.stop_record_button);
         //recordButton.setVisibility(View.VISIBLE);
         //recordButton.setText("Start Recording");
+
+        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+
+        LocationManager lm = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,9 +133,12 @@ public class VideoRecord extends Fragment implements LocationListener {
                     prepareVideoRecorder();
                     isRecording = true;
                     recordButton.setImageResource(R.drawable.stop);
+
                 }
             }
         });
+
+
 
 
 

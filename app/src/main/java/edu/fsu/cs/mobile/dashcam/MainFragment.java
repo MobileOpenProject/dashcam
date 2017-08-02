@@ -41,7 +41,6 @@ public class MainFragment extends Fragment
         // TODO: setup UI
         Record = (Button) rootView.findViewById(R.id.button_record);
         Review = (Button) rootView.findViewById(R.id.button_review);
-        Record.setVisibility(View.VISIBLE);
         Record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
