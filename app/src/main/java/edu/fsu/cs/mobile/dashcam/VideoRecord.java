@@ -78,7 +78,9 @@ public class VideoRecord extends Fragment implements LocationListener {
             //locations.add(newLatLng);
             LocationData temp = new LocationData(((int)System.currentTimeMillis() / 1000) - startTime, newLatLng);
             locations.add(temp);
-            Toast.makeText(getContext(), "LatLng = " + newLatLng.toString(), Toast.LENGTH_LONG).show();
+
+            //For testing:
+            //Toast.makeText(getContext(), "LatLng = " + newLatLng.toString(), Toast.LENGTH_LONG).show();
         }
 
 
