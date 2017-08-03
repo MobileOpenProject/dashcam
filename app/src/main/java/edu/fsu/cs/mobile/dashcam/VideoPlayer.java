@@ -39,12 +39,13 @@ public class VideoPlayer extends Fragment {
     public void getTime() {
         if (vidView.isPlaying()) {
             Log.d("dbtag", Integer.toString(vidView.getCurrentPosition()/1000));
-
-            for (int i = 1; i < VideoRecord.locations.size(); i++) {
-                if (vidView.getCurrentPosition() / 1000 == VideoRecord.locations.get(i).TimeStamp) {
-                    MapFragment.drawLine(first, VideoRecord.locations.get(i).aLocation);
-                    first = VideoRecord.locations.get(i).aLocation;
-                    break;
+            if (VideoRecord.locations.size() != 0) {
+                for (int i = 1; i < VideoRecord.locations.size(); i++) {
+                    if (vidView.getCurrentPosition() / 1000 == VideoRecord.locations.get(i).TimeStamp) {
+                        MapFragment.drawLine(first, VideoRecord.locations.get(i).aLocation);
+                        first = VideoRecord.locations.get(i).aLocation;
+                        break;
+                    }
                 }
             }
         }
@@ -64,8 +65,11 @@ public class VideoPlayer extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        first = VideoRecord.locations.get(0).aLocation;
+        if (VideoRecord.locations.size() != 0) {
+            first = VideoRecord.locations.get(0).aLocation;
+        } else {
+            Toast.makeText(getContext(), "No map data to show", Toast.LENGTH_LONG).show();
+        }
 
         View rootView = inflater.inflate(R.layout.video_player, container, false);
         vidView = (VideoView) rootView.findViewById(R.id.myVideo);
