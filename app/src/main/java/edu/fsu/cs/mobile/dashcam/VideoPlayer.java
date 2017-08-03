@@ -31,10 +31,8 @@ import java.net.URI;
 /****************************************************************/
 
 public class VideoPlayer extends Fragment {
-    String uri;
-    VideoView vidView;
-
-    LatLng first;
+    private VideoView vidView;
+    private LatLng first;
 
     public void getTime() {
         if (vidView.isPlaying()) {
@@ -79,7 +77,6 @@ public class VideoPlayer extends Fragment {
         mTicker.run();
 
         if (videoFile.exists()) {
-
             vidView.setVideoURI(Uri.parse(vidPath));
             vidView.start();
             MediaController vidControl = new MediaController(this.getContext());

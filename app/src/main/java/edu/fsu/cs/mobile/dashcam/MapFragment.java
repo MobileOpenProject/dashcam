@@ -54,6 +54,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
     }
 
+    /* important method for drawing the line of the path on the map */
     public static void drawLine(LatLng first, LatLng second) {
         PolylineOptions line = new PolylineOptions()
                 .add(first, second)

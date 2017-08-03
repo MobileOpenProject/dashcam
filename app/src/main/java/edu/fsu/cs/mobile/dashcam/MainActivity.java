@@ -182,35 +182,23 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.menu_auto:
-                //Toast.makeText(this, "Auto Clicked", Toast.LENGTH_LONG).show();
-                //TODO: put actions for click
-
+                Toast.makeText(this, "Manual Clicked", Toast.LENGTH_LONG).show();
+                //To be used for future implementations
                 break;
             case R.id.menu_manual:
                 Toast.makeText(this, "Manual Clicked", Toast.LENGTH_LONG).show();
-
-                //TODO: put actions for click
-
+                //To be used for future implementations
                 break;
         }
         return true;
     }
 
-
-    @Override
-    public void onRecord(ContentValues values) {
-
-    }
-
+    /* calls the video&map fragment, used for showing the user the review of their video*/
     @Override
     public void onReview() {
-
         VideoPlayerAndMapFragment fragment = new VideoPlayerAndMapFragment();
-
         String tag = VideoPlayerAndMapFragment.class.getCanonicalName();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_frame, fragment, tag).commit();
-
-
     }
 
     /* Calls main fragment */
@@ -237,14 +225,16 @@ public class MainActivity extends AppCompatActivity
 
     //WHEN USER CLICKS ON THE BACK BUTTON, MAIN SCREEN POPS UP.
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         onMain();
         return;
     }
 
-    public void stopRecord() {
+    /* required overide of stopRecord */
+    public void stopRecord() { }
 
-    }
+    /* required override of onRecord */
+    @Override
+    public void onRecord(ContentValues values) { }
 }
 

@@ -30,9 +30,7 @@ public class VideoFragment extends Fragment {
     private View mRootView;
 
 
-
-    public VideoFragment()
-    {
+    public VideoFragment() {
         // Required empty public constructor
     }
 
@@ -42,14 +40,7 @@ public class VideoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mRootView = inflater.inflate(R.layout.video_layout, container, false);
-        // TODO: Setup UI
-        //ImageView background = mRootView.findViewById(R.id.imageView);
-        //background.setScaleType(ImageView.ScaleType.FIT_XY);
         mRootView.setBackgroundResource(0);
-
-
-
-
         return mRootView;
     }
 

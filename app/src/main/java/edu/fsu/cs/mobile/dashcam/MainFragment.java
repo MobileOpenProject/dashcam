@@ -27,7 +27,6 @@ public class MainFragment extends Fragment
     private MainFragmentListener mListener;
     public Button Record;
     Button Review;
-    Button Stop;
 
     public MainFragment() {
         // Required empty public constructor
@@ -80,8 +79,6 @@ public class MainFragment extends Fragment
 
     public interface MainFragmentListener {
         void onReview();
-
         void startRecord();
-        void stopRecord();
     }
 }

@@ -16,10 +16,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 ////////CODE 1-of-3 TO OBTAIN THE GPS Coordinates, as Video Records/////////////////////////////
@@ -87,7 +85,7 @@ public class VideoRecord extends Fragment implements LocationListener {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+    // empty constructor
     public VideoRecord() {
 
     }
@@ -167,8 +165,7 @@ public class VideoRecord extends Fragment implements LocationListener {
         return c;
     }
 
-    public String returnURI()
-    {
+    public String returnURI() {
         return URI;
     }
 
@@ -204,18 +201,14 @@ public class VideoRecord extends Fragment implements LocationListener {
     }
 
     private boolean prepareVideoRecorder() {
-        //mCamera = getCameraInstance();
         mMediaRecorder = new MediaRecorder();
-
         mCamera.lock();
         mCamera.unlock();
         mMediaRecorder.setCamera(mCamera);
         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
         mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
         mMediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
-
         mMediaRecorder.setOutputFile(getOutputMediaFile(MEDIA_TYPE_VIDEO).toString());
-
         mMediaRecorder.setMaxDuration(120000);
 
 
@@ -238,12 +231,10 @@ public class VideoRecord extends Fragment implements LocationListener {
             public void onInfo(MediaRecorder mediaRecorder, int i, int i1) {
                 if(i == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
                     Toast.makeText(getContext(), "2 Minute Recording Reached", Toast.LENGTH_LONG).show();
-                    //Toast.makeText(getContext(), "stopping", Toast.LENGTH_LONG).show();
                     mMediaRecorder.stop();
                     releaseMediaRecorder();
                     Log.d("dbtag", "notrecording");
                     isRecording = false;
-                    //Toast.makeText(getContext(), "starting", Toast.LENGTH_LONG).show();
                     prepareVideoRecorder();
                     isRecording = true;
                 }
@@ -257,8 +248,6 @@ public class VideoRecord extends Fragment implements LocationListener {
     private void releaseMediaRecorder() {
         if (mMediaRecorder != null) {
             mMediaRecorder.reset();
-            //mMediaRecorder.release();
-            //mMediaRecorder = null;
             mCamera.lock();
         }
     }
