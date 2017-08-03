@@ -5,7 +5,7 @@ import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import java.io.IOException;
-
+import static edu.fsu.cs.mobile.dashcam.VideoRecord.getCameraInstance;
 /****************************************************************/
 /* -------MapCam App---------                                   */
 /*                                                              */
